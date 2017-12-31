@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, jsonify
 import pandas as pd
 import requests 
 import simplejson as json
@@ -26,10 +26,11 @@ def index():
     if request.method == 'GET':
         return render_template('index.html')
     else:
-        name=request.form['name']        
+        name=request.form['name']
+        name2=jsonify(name)
         feature=request.form.getlist('feature')
         featurenumber=len(feature)
-        if (featurenumber==0):
+        if (name2 is None or featurenumber==0):
             return 'Wrong input, please check!'
         else:
             dfnew=loaddata(name)
@@ -38,17 +39,13 @@ def index():
             y=[1,2,3,4]
             for i in range(0, featurenumber):
                 y[i]=dfnew[dfnew['ticker']==name][feature[i]].values.tolist()
-            # add this line to check plot locally
-            #output_file('plot.htm')
             p = figure(title=name, x_axis_label='Date', y_axis_label='Price', x_axis_type="datetime")
             color=['blue','green','red','orange']
             for i in range(0,featurenumber):
                 p.line(x, y[i], line_width=2, line_color=color[i], legend=feature[i])    
-        # Embed plot into HTML via Flask Render
+            # Embed plot into HTML via Flask Render
             script, div = embed.components(p)
-            show(p)
-        # add this line to check plot locally
-        #return render_template('plot.htm')
+            #show(p)
             return render_template('graph.html', script=script, div=div)
     
 

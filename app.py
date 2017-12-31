@@ -27,10 +27,10 @@ def index():
         return render_template('index.html')
     else:
         name=request.form['name']
-        name2=jsonify(name)
+        name2=str(name)
         feature=request.form.getlist('feature')
         featurenumber=len(feature)
-        if (name2 is None or featurenumber==0):
+        if (name2=='' or featurenumber==0):
             return 'Wrong input, please check!'
         else:
             dfnew=loaddata(name)

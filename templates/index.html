@@ -7,7 +7,7 @@
     <meta name="author" content="@gotoariel">
     <!-- <link rel="icon" href="favicon.ico"> -->
 
-    <title>Wilkommen, bienvenue, and welcome to Heroku!</title>
+    <title>Ticker App_Kelly</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -16,13 +16,23 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12 text-left">
-          <h2>Hello, World!</h2>
-          <ul>
-            <li><a target="_blank" href="https://www.heroku.com/">Heroku</a></li>
-            <li><a target="_blank" href="http://flask.pocoo.org/">Flask</a></li>
-            <li><a target="_blank" href="http://jinja.pocoo.org/docs/2.9/">Jinja2</a></li>
-            <li><a target="_blank" href="http://getbootstrap.com/">Bootstrap</a></li>
-          </ul>
+          <h2>This is a ticker app!</h2>
+
+            <form id='index' method='post' action='/' > <!-- action is the URL you want to move to next-->
+   <p>
+   Ticker Symbol: <input type='text' name='name' />
+   </p>
+
+  <input type="radio" name="plot" value="open" checked> Opening price<br>
+  <input type="radio" name="plot" value="close"> Closing price<br>
+  <input type="radio" name="plot" value="high"> High price<br>
+  <input type="radio" name="plot" value="low"> Low price
+                
+   <p>
+   <input type='submit' value='Submit' /> <!-- value is the text that will appear on the button. -->
+   </p>
+</form>
+            
         </div>
       </div>
     </div>
